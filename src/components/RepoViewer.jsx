@@ -1,9 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Icon } from '@iconify/react';
 import projectLists from '../data/projectLists.json';
-
-const CACHE_KEY = 'repos-cache-v4';
-const CACHE_TTL = 60 * 60 * 1000;
+import projectsMeta from '../data/projectsMeta.json';
 
 const languageIconMap = {
   JavaScript: { icon: 'devicon:javascript', color: '#f7df1e' },
@@ -38,114 +36,6 @@ const languageIconMap = {
 const getLanguageIcon = (language) =>
   languageIconMap[language] || { icon: 'mdi:code-tags', color: '#8ee0ff' };
 
-const fetchLanguages = async (url) => {
-  const res = await fetch(url);
-  if (!res.ok) return [];
-  const data = await res.json();
-  return Object.keys(data);
-};
-
-const fetchReadme = async (repo) => {
-  const res = await fetch(`https://api.github.com/repos/${repo.full_name}/readme`, {
-    headers: {
-      Accept: 'application/vnd.github.raw'
-    }
-  });
-
-  if (res.ok) {
-    return res.text();
-  }
-
-  const branch = repo.default_branch || 'main';
-  const fallbackCandidates = [
-    `https://raw.githubusercontent.com/${repo.full_name}/${branch}/README.md`,
-    `https://raw.githubusercontent.com/${repo.full_name}/${branch}/readme.md`,
-    `https://raw.githubusercontent.com/${repo.full_name}/${branch}/README.MD`
-  ];
-
-  for (const url of fallbackCandidates) {
-    const fallbackRes = await fetch(url);
-    if (fallbackRes.ok) {
-      return fallbackRes.text();
-    }
-  }
-
-  return '';
-};
-
-const stripMarkdown = (text) => {
-  return text
-    .replace(/!\[[^\]]*\]\([^\)]*\)/g, '')
-    .replace(/\[[^\]]*\]\([^\)]*\)/g, '')
-    .replace(/`{1,3}[^`]*`{1,3}/g, '')
-    .replace(/[*_~#>]/g, '')
-    .replace(/\s{2,}/g, ' ')
-    .trim();
-};
-
-const parseReadme = (readme) => {
-  if (!readme) return { title: '', description: '', coverPath: '' };
-
-  const lines = readme.split('\n');
-  const titleLine = lines.find((line) => /^#{1,2}\s+/.test(line.trim())) || '';
-  const title = titleLine.replace(/^#{1,2}\s+/, '').trim();
-
-  let description = '';
-  const descIndex = lines.findIndex((line) => /^#{1,2}\s*Description\b/i.test(line.trim()));
-  if (descIndex >= 0) {
-    const descLines = [];
-    for (let i = descIndex + 1; i < lines.length; i += 1) {
-      if (/^#{1,6}\s+/.test(lines[i].trim())) break;
-      descLines.push(lines[i]);
-    }
-    description = stripMarkdown(descLines.join(' ').trim());
-  }
-
-  const coverMatch = readme.match(/!\[[^\]]*cover[^\]]*\]\(([^\)]+)\)/i);
-  const coverPath = coverMatch ? coverMatch[1].trim() : '';
-
-  return { title, description, coverPath };
-};
-
-const loadRepos = async (username, lists) => {
-  const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
-  if (cached && Date.now() - cached.time < CACHE_TTL) {
-    return cached.data;
-  }
-
-  const res = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`);
-  if (!res.ok) {
-    throw new Error('GitHub API error');
-  }
-
-  const data = await res.json();
-  const targetList = [...(lists.didactic || []), ...(lists.personal || [])];
-  const targetSet = new Set(targetList.map((item) => item.toLowerCase()));
-  const filtered = data
-    .filter((repo) => !repo.fork)
-    .filter((repo) => targetSet.has((repo.full_name || '').toLowerCase()));
-
-  const withDetails = await Promise.all(
-    filtered.map(async (repo) => {
-      const [languages, readme] = await Promise.all([
-        fetchLanguages(repo.languages_url),
-        fetchReadme(repo)
-      ]);
-      const { title, description, coverPath } = parseReadme(readme);
-      return {
-        ...repo,
-        languages,
-        readmeTitle: title,
-        readmeDescription: description,
-        readmeCover: coverPath
-      };
-    })
-  );
-
-  localStorage.setItem(CACHE_KEY, JSON.stringify({ time: Date.now(), data: withDetails }));
-  return withDetails;
-};
-
 const normalizeName = (value) => value.toLowerCase().replace(/[^a-z0-9]+/g, '');
 
 const filterByList = (repos, repoNames) => {
@@ -177,30 +67,13 @@ const RepoViewer = ({ username }) => {
   }, [previews]);
 
   useEffect(() => {
-    let alive = true;
-
-    loadRepos(username, projectLists)
-      .then((data) => {
-        if (!alive) return;
-        setRepos(data);
-        setStatus('ready');
-      })
-      .catch(() => {
-        if (!alive) return;
-        setStatus('error');
-      });
-
-    return () => {
-      alive = false;
-    };
+    const staticRepos = [...(projectsMeta.didactic || []), ...(projectsMeta.personal || [])];
+    setRepos(staticRepos);
+    setStatus('ready');
   }, [username]);
 
   if (status === 'loading') {
     return <p className="projects__status">Loading repositories...</p>;
-  }
-
-  if (status === 'error') {
-    return <p className="projects__status">GitHub API error. Try again later.</p>;
   }
 
   const didactic = filterByList(repos, projectLists.didactic);
@@ -211,6 +84,10 @@ const RepoViewer = ({ username }) => {
       const cleaned = repo.readmeCover.replace(/^\.\//, '').trim();
       if (cleaned.startsWith('http')) return cleaned;
       return `https://raw.githubusercontent.com/${repo.full_name}/${repo.default_branch}/${cleaned}`;
+    }
+
+    if (repo.coverUrl) {
+      return repo.coverUrl;
     }
 
     const normalized = normalizeName(repo.name);
