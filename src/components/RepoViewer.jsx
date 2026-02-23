@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { Icon } from '@iconify/react';
 import projectLists from '../data/projectLists.json';
 
-const CACHE_KEY = 'repos-cache-v2';
+const CACHE_KEY = 'repos-cache-v3';
 const CACHE_TTL = 60 * 60 * 1000;
 
 const languageIconMap = {
@@ -45,7 +45,51 @@ const fetchLanguages = async (url) => {
   return Object.keys(data);
 };
 
-const loadRepos = async (username) => {
+const fetchReadme = async (fullName) => {
+  const res = await fetch(`https://api.github.com/repos/${fullName}/readme`, {
+    headers: {
+      Accept: 'application/vnd.github.raw'
+    }
+  });
+  if (!res.ok) return '';
+  return res.text();
+};
+
+const stripMarkdown = (text) => {
+  return text
+    .replace(/!\[[^\]]*\]\([^\)]*\)/g, '')
+    .replace(/\[[^\]]*\]\([^\)]*\)/g, '')
+    .replace(/`{1,3}[^`]*`{1,3}/g, '')
+    .replace(/[*_~#>]/g, '')
+    .replace(/\s{2,}/g, ' ')
+    .trim();
+};
+
+const parseReadme = (readme) => {
+  if (!readme) return { title: '', description: '', coverPath: '' };
+
+  const lines = readme.split('\n');
+  const titleLine = lines.find((line) => line.trim().startsWith('# ')) || '';
+  const title = titleLine.replace(/^#\s+/, '').trim();
+
+  let description = '';
+  const descIndex = lines.findIndex((line) => /^#{1,2}\s*Description\b/i.test(line.trim()));
+  if (descIndex >= 0) {
+    const descLines = [];
+    for (let i = descIndex + 1; i < lines.length; i += 1) {
+      if (/^#{1,6}\s+/.test(lines[i].trim())) break;
+      descLines.push(lines[i]);
+    }
+    description = stripMarkdown(descLines.join(' ').trim());
+  }
+
+  const coverMatch = readme.match(/!\[[^\]]*cover[^\]]*\]\(([^\)]+)\)/i);
+  const coverPath = coverMatch ? coverMatch[1].trim() : '';
+
+  return { title, description, coverPath };
+};
+
+const loadRepos = async (username, lists) => {
   const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
   if (cached && Date.now() - cached.time < CACHE_TTL) {
     return cached.data;
@@ -57,20 +101,31 @@ const loadRepos = async (username) => {
   }
 
   const data = await res.json();
+  const targetList = [...(lists.didactic || []), ...(lists.personal || [])];
+  const targetSet = new Set(targetList.map((item) => item.toLowerCase()));
   const filtered = data
     .filter((repo) => !repo.fork)
-    .sort((a, b) => b.stargazers_count - a.stargazers_count)
-    .slice(0, 120);
+    .filter((repo) => targetSet.has((repo.full_name || '').toLowerCase()));
 
-  const withLanguages = await Promise.all(
+  const withDetails = await Promise.all(
     filtered.map(async (repo) => {
-      const languages = await fetchLanguages(repo.languages_url);
-      return { ...repo, languages };
+      const [languages, readme] = await Promise.all([
+        fetchLanguages(repo.languages_url),
+        fetchReadme(repo.full_name)
+      ]);
+      const { title, description, coverPath } = parseReadme(readme);
+      return {
+        ...repo,
+        languages,
+        readmeTitle: title,
+        readmeDescription: description,
+        readmeCover: coverPath
+      };
     })
   );
 
-  localStorage.setItem(CACHE_KEY, JSON.stringify({ time: Date.now(), data: withLanguages }));
-  return withLanguages;
+  localStorage.setItem(CACHE_KEY, JSON.stringify({ time: Date.now(), data: withDetails }));
+  return withDetails;
 };
 
 const normalizeName = (value) => value.toLowerCase().replace(/[^a-z0-9]+/g, '');
@@ -106,7 +161,7 @@ const RepoViewer = ({ username }) => {
   useEffect(() => {
     let alive = true;
 
-    loadRepos(username)
+    loadRepos(username, projectLists)
       .then((data) => {
         if (!alive) return;
         setRepos(data);
@@ -133,6 +188,17 @@ const RepoViewer = ({ username }) => {
   const didactic = filterByList(repos, projectLists.didactic);
   const personal = filterByList(repos, projectLists.personal);
 
+  const resolveCover = (repo) => {
+    if (repo.readmeCover) {
+      const cleaned = repo.readmeCover.replace(/^\.\//, '').trim();
+      if (cleaned.startsWith('http')) return cleaned;
+      return `https://raw.githubusercontent.com/${repo.full_name}/${repo.default_branch}/${cleaned}`;
+    }
+
+    const normalized = normalizeName(repo.name);
+    return previewMap[normalized] || '';
+  };
+
   const renderSection = (title, items) => (
     <div className="projects-section">
       <h3 className="projects-section__title">{title}</h3>
@@ -143,20 +209,20 @@ const RepoViewer = ({ username }) => {
           {items.map((repo) => (
             <article className="project-card" key={repo.id}>
               <div className="project-card__media">
-                {previewMap[normalizeName(repo.name)] ? (
+                {resolveCover(repo) ? (
                   <img
-                    src={previewMap[normalizeName(repo.name)]}
-                    alt={`${repo.name} preview`}
+                    src={resolveCover(repo)}
+                    alt={`${repo.readmeTitle || repo.name} preview`}
                     loading="lazy"
                   />
                 ) : (
                   <div className="project-card__media-fallback">
-                    {repo.name}
+                    {repo.readmeTitle || repo.name}
                   </div>
                 )}
               </div>
               <div className="project-card__top">
-                <h3>{repo.name}</h3>
+                <h3>{repo.readmeTitle || repo.name}</h3>
               </div>
               <div className="project-card__languages">
                 {(repo.languages || []).map((language) => {
@@ -168,7 +234,9 @@ const RepoViewer = ({ username }) => {
                   );
                 })}
               </div>
-              <p className="project-card__desc">{repo.description || 'No description yet.'}</p>
+              <p className="project-card__desc">
+                {repo.readmeDescription || repo.description || 'No description yet.'}
+              </p>
               <div className="project-card__meta">
                 <a href={repo.html_url} target="_blank" rel="noreferrer">
                   View
@@ -183,8 +251,8 @@ const RepoViewer = ({ username }) => {
 
   return (
     <div className="projects-wrapper">
-      {renderSection('Didactic Projects', didactic)}
       {renderSection('Personal Projects', personal)}
+      {renderSection('Didactic Projects', didactic)}
     </div>
   );
 };
