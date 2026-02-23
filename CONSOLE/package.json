@@ -1,0 +1,60 @@
+{
+  "name": "kuber-mehta-portfolio",
+  "homepage": "https://kuber.studio",
+  "version": "1.6.9",
+  "description": "Kuber Mehta's Portfolio - AI Developer & Full Stack Engineer showcase featuring terminal-style interface, interactive games, and innovative projects",
+  "keywords": [
+    "portfolio",
+    "react",
+    "ai-developer",
+    "full-stack",
+    "terminal",
+    "kuber-mehta",
+    "javascript",
+    "web-development"
+  ],
+  "author": "Kuber Mehta <kuberhob@gmail.com>",
+  "license": "GNU LESSER GENERAL PUBLIC LICENSE",
+  "private": true,
+  "dependencies": {
+    "@react-pdf-viewer/core": "^3.12.0",
+    "@react-pdf-viewer/default-layout": "^3.12.0",
+    "cra-template": "1.2.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.11.0",
+    "react-scripts": "^5.0.1",
+    "web-vitals": "^4.2.4"
+  },
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build --cname kuber.studio",
+    "build": "npm run update-metadata && react-scripts build && npm run update-metadata",
+    "update-metadata": "node scripts/update-metadata.js",
+    "start": "react-scripts start",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "gh-pages": "^6.3.0"
+  }
+}
