@@ -10,10 +10,6 @@ permissions:
   pages: write
   id-token: write
 
-env:
-  GITHUB_USERNAME: Koisuji02
-  GITHUB_TOKEN: ${{ secrets.GH_PAT }}
-
 concurrency:
   group: pages
   cancel-in-progress: true
@@ -33,9 +29,6 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-
-      - name: Fetch GitHub lists
-        run: npm run fetch:lists
 
       - name: Build
         run: npm run build

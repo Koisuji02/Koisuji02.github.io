@@ -1,4 +1,31 @@
 {
-  "didactic": [],
-  "personal": []
+  "didactic": [
+    "Koisuji02/JavaProgrammazioneOggetti",
+    "Koisuji02/ARM_LPC1768",
+    "Koisuji02/MIPS64",
+    "Koisuji02/MATLAB_Projects",
+    "Koisuji02/DataBase_Projects",
+    "Koisuji02/AlgoritmiStruttureDati",
+    "Koisuji02/IntroduzioneWebAppFlask",
+    "Koisuji02/OperativeSystems",
+    "Koisuji02/ProgrammazioneDiSistema",
+    "Koisuji02/Compilers",
+    "Koisuji02/SoftwareEngineering",
+    "Koisuji02/Web1",
+    "Koisuji02/IS-Exams",
+    "Koisuji02/DistributedSystems",
+    "Koisuji02/GPUProgramming",
+    "Koisuji02/SSI",
+    "Koisuji02/SoftwareEngineeringII"
+  ],
+  "personal": [
+    "Koisuji02/CalcoloCodiceFiscale",
+    "Koisuji02/TransposedMatrix",
+    "Koisuji02/GeoControl",
+    "Koisuji02/FilmManagerService",
+    "Koisuji02/RuggineChatRust",
+    "Koisuji02/GodotProjectGPU",
+    "Koisuji02/PersonalWebsite_Blog",
+    "Koisuji02/Participium"
+  ]
 }
