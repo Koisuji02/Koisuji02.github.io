@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { Icon } from '@iconify/react';
 import projectLists from '../data/projectLists.json';
 
-const CACHE_KEY = 'repos-cache-v3';
+const CACHE_KEY = 'repos-cache-v4';
 const CACHE_TTL = 60 * 60 * 1000;
 
 const languageIconMap = {
@@ -45,14 +45,32 @@ const fetchLanguages = async (url) => {
   return Object.keys(data);
 };
 
-const fetchReadme = async (fullName) => {
-  const res = await fetch(`https://api.github.com/repos/${fullName}/readme`, {
+const fetchReadme = async (repo) => {
+  const res = await fetch(`https://api.github.com/repos/${repo.full_name}/readme`, {
     headers: {
       Accept: 'application/vnd.github.raw'
     }
   });
-  if (!res.ok) return '';
-  return res.text();
+
+  if (res.ok) {
+    return res.text();
+  }
+
+  const branch = repo.default_branch || 'main';
+  const fallbackCandidates = [
+    `https://raw.githubusercontent.com/${repo.full_name}/${branch}/README.md`,
+    `https://raw.githubusercontent.com/${repo.full_name}/${branch}/readme.md`,
+    `https://raw.githubusercontent.com/${repo.full_name}/${branch}/README.MD`
+  ];
+
+  for (const url of fallbackCandidates) {
+    const fallbackRes = await fetch(url);
+    if (fallbackRes.ok) {
+      return fallbackRes.text();
+    }
+  }
+
+  return '';
 };
 
 const stripMarkdown = (text) => {
@@ -69,8 +87,8 @@ const parseReadme = (readme) => {
   if (!readme) return { title: '', description: '', coverPath: '' };
 
   const lines = readme.split('\n');
-  const titleLine = lines.find((line) => line.trim().startsWith('# ')) || '';
-  const title = titleLine.replace(/^#\s+/, '').trim();
+  const titleLine = lines.find((line) => /^#{1,2}\s+/.test(line.trim())) || '';
+  const title = titleLine.replace(/^#{1,2}\s+/, '').trim();
 
   let description = '';
   const descIndex = lines.findIndex((line) => /^#{1,2}\s*Description\b/i.test(line.trim()));
@@ -111,7 +129,7 @@ const loadRepos = async (username, lists) => {
     filtered.map(async (repo) => {
       const [languages, readme] = await Promise.all([
         fetchLanguages(repo.languages_url),
-        fetchReadme(repo.full_name)
+        fetchReadme(repo)
       ]);
       const { title, description, coverPath } = parseReadme(readme);
       return {
