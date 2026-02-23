@@ -377,6 +377,7 @@
   display: grid;
   gap: 22px;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  align-items: start;
 }
 
 .projects-wrapper {
@@ -406,15 +407,14 @@
   overflow: hidden;
   border: 1px solid rgba(107, 213, 255, 0.18);
   background: rgba(7, 11, 22, 0.85);
-  aspect-ratio: 16 / 9;
   display: grid;
   place-items: center;
 }
 
 .project-card__media img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  display: block;
 }
 
 .project-card__media-fallback {
@@ -464,7 +464,6 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   overflow: hidden;
-  min-height: 3.9em;
 }
 
 .project-card__meta {
