@@ -19,13 +19,13 @@
     "Koisuji02/SoftwareEngineeringII"
   ],
   "personal": [
-    "Koisuji02/CalcoloCodiceFiscale",
-    "Koisuji02/TransposedMatrix",
-    "Koisuji02/GeoControl",
-    "Koisuji02/FilmManagerService",
-    "Koisuji02/RuggineChatRust",
     "Koisuji02/GodotProjectGPU",
+    "Koisuji02/Participium",
+    "Koisuji02/GeoControl",
+    "Koisuji02/RuggineChatRust",
+    "Koisuji02/FilmManagerService",
     "Koisuji02/PersonalWebsite_Blog",
-    "Koisuji02/Participium"
+    "Koisuji02/CalcoloCodiceFiscale",
+    "Koisuji02/TransposedMatrix"
   ]
 }
