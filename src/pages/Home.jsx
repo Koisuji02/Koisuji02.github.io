@@ -1,8 +1,9 @@
 import '../styles/home.css';
 import { Link } from 'react-router-dom';
+import { Icon } from '@iconify/react';
 import SkillsGrid from '../components/SkillsGrid';
 import RepoViewer from '../components/RepoViewer';
-import { about } from '../data/siteData';
+import { about, terminalContacts } from '../data/siteData';
 import TypewriterTitle from '../components/TypewriterTitle';
 import cvPdf from '../assets/pdf/cv.pdf';
 
@@ -154,7 +155,27 @@ const Home = () => {
       </section>
 
       <footer className="footer">
-        <p>TODO: insert white social icons at center of screen with glowing on hovering</p>
+        <div className="footer__social">
+          <a
+            href={terminalContacts.linkedin}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="LinkedIn"
+          >
+            <Icon icon="mdi:linkedin" width={26} height={26} />
+          </a>
+          <a href={terminalContacts.email} aria-label="Email">
+            <Icon icon="mdi:email-outline" width={26} height={26} />
+          </a>
+          <a
+            href={terminalContacts.github}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="GitHub"
+          >
+            <Icon icon="mdi:github" width={26} height={26} />
+          </a>
+        </div>
       </footer>
     </div>
   );

@@ -1,12 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-  about,
-  notes,
-  terminalContacts,
-  terminalProjects,
-  terminalSkills
-} from '../data/siteData';
+import { about, terminalContacts, terminalSkills } from '../data/siteData';
+import projectLists from '../data/projectLists.json';
+import projectsMeta from '../data/projectsMeta.json';
 
 const prompt = 'koisuji@dev ';
 const nameArt = `██╗  ██╗ ██████╗ ██╗███████╗██╗   ██╗     ██╗██╗
@@ -16,6 +12,47 @@ const nameArt = `██╗  ██╗ ██████╗ ██╗███�
 ██║  ██╗╚██████╔╝██║███████║╚██████╔╝╚█████╔╝██║
 ╚═╝  ╚═╝ ╚═════╝ ╚═╝╚══════╝ ╚═════╝  ╚════╝ ╚═╝`;
 const formatList = (items) => items.map((item) => `- ${item}`).join('\n');
+
+const noteFiles = import.meta.glob('../assets/pdf/notes/*.pdf', {
+  eager: true,
+  import: 'default'
+});
+
+const formatNoteTitle = (name) => {
+  return name
+    .replace(/_/g, ' ')
+    .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
+    .replace(/([A-Z])([A-Z][a-z])/g, '$1 $2')
+    .replace(/([a-zA-Z])(\d)/g, '$1 $2')
+    .replace(/(\d)([a-zA-Z])/g, '$1 $2')
+    .replace(/\(/g, ' (')
+    .replace(/\s{2,}/g, ' ')
+    .trim();
+};
+
+const notes = Object.keys(noteFiles)
+  .map((path) => {
+    const filename = path.split('/').pop().replace(/\.pdf$/i, '');
+    return formatNoteTitle(filename);
+  })
+  .sort((a, b) => a.localeCompare(b));
+
+const orderByList = (repos, repoNames) => {
+  if (!repoNames?.length) return [];
+  const order = new Map(repoNames.map((name, index) => [name.toLowerCase(), index]));
+  return repos
+    .filter((repo) => order.has((repo.full_name || '').toLowerCase()))
+    .sort((a, b) => order.get(a.full_name.toLowerCase()) - order.get(b.full_name.toLowerCase()));
+};
+
+const terminalProjects = (() => {
+  const all = [...(projectsMeta.personal || []), ...(projectsMeta.didactic || [])];
+  if (!all.length) return [];
+  return [
+    ...orderByList(all, projectLists.personal),
+    ...orderByList(all, projectLists.didactic)
+  ];
+})();
 
 const TerminalShell = () => {
   const navigate = useNavigate();
@@ -78,16 +115,27 @@ const TerminalShell = () => {
         pushOutput(`Skills:\n${formatList(terminalSkills)}`);
         break;
       case 'projects':
+        if (!terminalProjects.length) {
+          pushOutput('No projects available.');
+          break;
+        }
+
         pushOutput(
           terminalProjects
-            .map((project) => `${project.name}\n  ${project.desc}\n  ${project.link}`)
+            .map((project) => {
+              const title = project.readmeTitle || project.name || 'Untitled';
+              const description =
+                project.readmeDescription || project.description || 'No description yet.';
+              const technologies = (project.languages || []).length
+                ? project.languages.join(' | ')
+                : 'n/a';
+              return `${title}\n  ${description}\n  technologies: ${technologies}`;
+            })
             .join('\n\n')
         );
         break;
       case 'notes':
-        pushOutput(
-          notes.map((note) => `${note.label}\n  ${note.href}`).join('\n\n')
-        );
+        pushOutput(notes.length ? notes.join('\n') : 'No notes available.');
         break;
       case 'github':
         window.open(terminalContacts.github, '_blank', 'noreferrer');
