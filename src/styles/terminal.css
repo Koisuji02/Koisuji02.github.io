@@ -7,7 +7,10 @@
 
 .terminal-shell {
   width: min(980px, 92vw);
+  height: min(78vh, 720px);
   min-height: 520px;
+  max-height: 78vh;
+  position: relative;
   background: rgba(7, 11, 22, 0.95);
   border-radius: 22px;
   border: 1px solid rgba(107, 213, 255, 0.2);
@@ -105,6 +108,84 @@
   text-decoration: underline;
   text-decoration-thickness: 2px;
   text-underline-offset: 3px;
+}
+
+.terminal-game-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 8, 18, 0.96);
+  display: grid;
+  place-items: center;
+  z-index: 5;
+}
+
+.terminal-game-card {
+  width: min(620px, 92%);
+  background: rgba(10, 16, 32, 0.95);
+  border: 1px solid rgba(107, 213, 255, 0.2);
+  border-radius: 18px;
+  padding: 18px;
+  display: grid;
+  gap: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+}
+
+.terminal-game-card__title {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--font-mono);
+  color: var(--cyan-300);
+  font-weight: 700;
+  letter-spacing: 0.6px;
+}
+
+.terminal-game-card__hint {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-200);
+}
+
+.terminal-game {
+  position: relative;
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+}
+
+.terminal-game__header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-100);
+  font-family: var(--font-mono);
+  font-size: 14px;
+}
+
+.terminal-game__score {
+  color: var(--text-200);
+}
+
+.terminal-game__canvas {
+  background: rgba(6, 10, 22, 0.9);
+  border: 1px solid rgba(107, 213, 255, 0.2);
+  border-radius: 12px;
+}
+
+.terminal-game__hint {
+  font-size: 12px;
+  color: var(--muted-500);
+}
+
+.terminal-game__overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-size: 18px;
+  color: var(--text-100);
+  text-shadow: 0 0 12px rgba(107, 213, 255, 0.3);
 }
 
 @media (max-width: 720px) {

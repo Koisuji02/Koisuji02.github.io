@@ -2,6 +2,8 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { about, terminalContacts } from '../data/siteData';
 import { skillGroups } from './SkillsGrid';
+import SnakeGame from './TerminalGames/SnakeGame';
+import TetrisGame from './TerminalGames/TetrisGame';
 import projectLists from '../data/projectLists.json';
 import projectsMeta from '../data/projectsMeta.json';
 
@@ -55,6 +57,12 @@ const terminalProjects = (() => {
   ];
 })();
 
+const availableGames = ['snake', 'tetris'];
+const gameLabels = {
+  snake: 'Snake',
+  tetris: 'Tetris'
+};
+
 const TerminalShell = () => {
   const navigate = useNavigate();
   const inputRef = useRef(null);
@@ -63,15 +71,16 @@ const TerminalShell = () => {
   const [history, setHistory] = useState([]);
   const [commandHistory, setCommandHistory] = useState([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
+  const [activeGame, setActiveGame] = useState(null);
 
   const commands = useMemo(
     () => [
       'help',
       'about',
-      'whoami',
       'skills',
       'projects',
       'notes',
+      'game',
       'ls',
       'clear',
       'quit',
@@ -109,6 +118,11 @@ const TerminalShell = () => {
     );
   };
 
+  const launchGame = (name) => {
+    setActiveGame(name);
+    pushOutput(`Launching ${gameLabels[name]}... Press Esc to exit.`);
+  };
+
   const runCommand = (raw) => {
     const [cmd, ...args] = raw.trim().split(' ');
     const command = cmd.toLowerCase();
@@ -118,12 +132,10 @@ const TerminalShell = () => {
 
     switch (command) {
       case 'help':
-        pushOutput(
-          `Available commands:\n${formatList(commands)}`
-        );
+        pushOutput(`Available commands:\n${formatList(commands)}`);
+        pushOutput('Game usage: game | game snake | game tetris');
         break;
       case 'about':
-      case 'whoami':
         pushOutput(`${about.bio}`);
         pushOutput(`Focus:\n${formatList(about.focus)}`);
         break;
@@ -174,6 +186,23 @@ const TerminalShell = () => {
       case 'notes':
         pushOutput(notes.length ? notes.join('\n') : 'No notes available.');
         break;
+      case 'game': {
+        const selected = argument.toLowerCase();
+        if (!selected) {
+          const randomGame = availableGames[Math.floor(Math.random() * availableGames.length)];
+          launchGame(randomGame);
+          break;
+        }
+
+        if (!availableGames.includes(selected)) {
+          pushOutput(`Unknown game: ${selected}`);
+          pushOutput(`Available games: ${availableGames.join(', ')}`);
+          break;
+        }
+
+        launchGame(selected);
+        break;
+      }
       case 'github':
         window.open(terminalContacts.github, '_blank', 'noreferrer');
         pushOutput('Opening GitHub profile...');
@@ -208,14 +237,15 @@ const TerminalShell = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (activeGame) return;
     const value = input.trim();
     if (!value) return;
 
+    setInput('');
+    setHistoryIndex(-1);
     pushOutput(`${prompt}$ ${value}`, 'command');
     runCommand(value);
     setCommandHistory((prev) => [...prev, value]);
-    setInput('');
-    setHistoryIndex(-1);
   };
 
   const handleKeyDown = (event) => {
@@ -246,6 +276,23 @@ const TerminalShell = () => {
   }, []);
 
   useEffect(() => {
+    if (!activeGame) return undefined;
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setActiveGame(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [activeGame]);
+
+  useEffect(() => {
+    if (!activeGame) {
+      inputRef.current?.focus();
+    }
+  }, [activeGame]);
+
+  useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
@@ -273,10 +320,23 @@ const TerminalShell = () => {
           value={input}
           onChange={(event) => setInput(event.target.value)}
           onKeyDown={handleKeyDown}
+          disabled={Boolean(activeGame)}
           spellCheck="false"
           autoComplete="off"
         />
       </form>
+      {activeGame && (
+        <div className="terminal-game-overlay" role="dialog" aria-live="polite">
+          <div className="terminal-game-card">
+            <div className="terminal-game-card__title">
+              {gameLabels[activeGame]}
+              <span className="terminal-game-card__hint">Press Esc to exit</span>
+            </div>
+            {activeGame === 'snake' && <SnakeGame />}
+            {activeGame === 'tetris' && <TetrisGame />}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
