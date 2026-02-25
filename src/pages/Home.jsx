@@ -4,6 +4,7 @@ import SkillsGrid from '../components/SkillsGrid';
 import RepoViewer from '../components/RepoViewer';
 import { about, notes } from '../data/siteData';
 import TypewriterTitle from '../components/TypewriterTitle';
+import cvPdf from '../assets/pdf/cv.pdf';
 
 const Home = () => {
   return (
@@ -52,7 +53,9 @@ const Home = () => {
           </p>
           <div className="hero__cta">
             <a className="btn btn--bubble" href="#projects">See Projects</a>
-            <a className="btn btn--ghost" href="/notes/cv.pdf">Download CV</a>
+            <a className="btn btn--ghost" href={cvPdf} target="_blank" rel="noreferrer">
+              Open CV
+            </a>
           </div>
         </div>
 
