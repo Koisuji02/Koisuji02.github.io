@@ -96,6 +96,17 @@
   color: var(--cyan-300);
 }
 
+.terminal-accent--bold {
+  font-weight: 700;
+}
+
+.terminal-accent--title {
+  font-size: 16px;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
 @media (max-width: 720px) {
   .terminal-shell {
     min-height: 70vh;

@@ -8,7 +8,7 @@ const renderIcon = (skill) => {
   return <Icon icon={skill.icon} width={22} height={22} />;
 };
 
-const skillGroups = [
+export const skillGroups = [
   {
     title: 'Languages',
     items: [

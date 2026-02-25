@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { about, terminalContacts, terminalSkills } from '../data/siteData';
+import { about, terminalContacts } from '../data/siteData';
+import { skillGroups } from './SkillsGrid';
 import projectLists from '../data/projectLists.json';
 import projectsMeta from '../data/projectsMeta.json';
 
@@ -93,6 +94,21 @@ const TerminalShell = () => {
     setHistory((prev) => [...prev, { content, type }]);
   };
 
+  const renderSkillLine = (items) => {
+    if (!items?.length) return 'No skills available.';
+
+    return (
+      <span>
+        {items.map((skill, skillIndex) => (
+          <span key={`${skill.name}-${skillIndex}`}>
+            <span className="terminal-accent">{skill.name}</span>: {skill.level ?? 0}
+            {skillIndex < items.length - 1 ? ' | ' : ''}
+          </span>
+        ))}
+      </span>
+    );
+  };
+
   const runCommand = (raw) => {
     const [cmd, ...args] = raw.trim().split(' ');
     const command = cmd.toLowerCase();
@@ -108,11 +124,21 @@ const TerminalShell = () => {
         break;
       case 'about':
       case 'whoami':
-        pushOutput(`${about.title}\n${about.bio}`);
+        pushOutput(`${about.bio}`);
         pushOutput(`Focus:\n${formatList(about.focus)}`);
         break;
       case 'skills':
-        pushOutput(`Skills:\n${formatList(terminalSkills)}`);
+        skillGroups.forEach((group, index) => {
+          pushOutput(
+            <span className="terminal-accent terminal-accent--bold terminal-accent--title">
+              {group.title}
+            </span>
+          );
+          pushOutput(renderSkillLine(group.items));
+          if (index < skillGroups.length - 1) {
+            pushOutput('');
+          }
+        });
         break;
       case 'projects':
         if (!terminalProjects.length) {
@@ -120,19 +146,30 @@ const TerminalShell = () => {
           break;
         }
 
-        pushOutput(
-          terminalProjects
-            .map((project) => {
-              const title = project.readmeTitle || project.name || 'Untitled';
-              const description =
-                project.readmeDescription || project.description || 'No description yet.';
-              const technologies = (project.languages || []).length
-                ? project.languages.join(' | ')
-                : 'n/a';
-              return `${title}\n  ${description}\n  technologies: ${technologies}`;
-            })
-            .join('\n\n')
-        );
+        terminalProjects.forEach((project, index) => {
+          const title = project.readmeTitle || project.name || 'Untitled';
+          const description =
+            project.readmeDescription || project.description || 'No description yet.';
+          const technologies = (project.languages || []).length
+            ? project.languages.join(' | ')
+            : 'n/a';
+
+          pushOutput(
+            <span className="terminal-accent terminal-accent--bold terminal-accent--title">
+              {title}
+            </span>
+          );
+          pushOutput(`  ${description}`);
+          pushOutput(
+            <span>
+              <span className="terminal-accent">  technologies:</span> {technologies}
+            </span>
+          );
+
+          if (index < terminalProjects.length - 1) {
+            pushOutput('');
+          }
+        });
         break;
       case 'notes':
         pushOutput(notes.length ? notes.join('\n') : 'No notes available.');

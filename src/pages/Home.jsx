@@ -162,10 +162,10 @@ const Home = () => {
             rel="noreferrer"
             aria-label="LinkedIn"
           >
-            <Icon icon="mdi:linkedin" width={26} height={26} />
+            <Icon icon="mdi:linkedin" width={40} height={40} />
           </a>
           <a href={terminalContacts.email} aria-label="Email">
-            <Icon icon="mdi:email-outline" width={26} height={26} />
+            <Icon icon="mdi:email-outline" width={40} height={40} />
           </a>
           <a
             href={terminalContacts.github}
@@ -173,7 +173,7 @@ const Home = () => {
             rel="noreferrer"
             aria-label="GitHub"
           >
-            <Icon icon="mdi:github" width={26} height={26} />
+            <Icon icon="mdi:github" width={40} height={40} />
           </a>
         </div>
       </footer>
