@@ -2,9 +2,36 @@ import '../styles/home.css';
 import { Link } from 'react-router-dom';
 import SkillsGrid from '../components/SkillsGrid';
 import RepoViewer from '../components/RepoViewer';
-import { about, notes } from '../data/siteData';
+import { about } from '../data/siteData';
 import TypewriterTitle from '../components/TypewriterTitle';
 import cvPdf from '../assets/pdf/cv.pdf';
+
+const noteFiles = import.meta.glob('../assets/pdf/notes/*.pdf', {
+  eager: true,
+  import: 'default'
+});
+
+const formatNoteTitle = (name) => {
+  return name
+    .replace(/_/g, ' ')
+    .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
+    .replace(/([A-Z])([A-Z][a-z])/g, '$1 $2')
+    .replace(/([a-zA-Z])(\d)/g, '$1 $2')
+    .replace(/(\d)([a-zA-Z])/g, '$1 $2')
+    .replace(/\(/g, ' (')
+    .replace(/\s{2,}/g, ' ')
+    .trim();
+};
+
+const notes = Object.entries(noteFiles)
+  .map(([path, url]) => {
+    const filename = path.split('/').pop().replace(/\.pdf$/i, '');
+    return {
+      title: formatNoteTitle(filename),
+      url
+    };
+  })
+  .sort((a, b) => a.title.localeCompare(b.title));
 
 const Home = () => {
   return (
@@ -109,12 +136,18 @@ const Home = () => {
       <section id="notes" className="section notes">
         <div className="section__title">
           <h2>Notes</h2>
-          <p>Click a note to download it!</p>
+          <p>Click a note to open it!</p>
         </div>
         <div className="notes__bubble-wrap">
           {notes.map((note) => (
-            <a className="note-bubble" key={note.label} href={note.href} download>
-              {note.label}
+            <a
+              className="note-bubble"
+              key={note.title}
+              href={note.url}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {note.title}
             </a>
           ))}
         </div>
