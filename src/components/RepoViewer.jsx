@@ -38,13 +38,6 @@ const getLanguageIcon = (language) =>
 
 const normalizeName = (value) => value.toLowerCase().replace(/[^a-z0-9]+/g, '');
 
-const allowedImageHosts = [
-  'https://raw.githubusercontent.com/',
-  'https://user-images.githubusercontent.com/'
-];
-
-const isAllowedImageUrl = (url) =>
-  allowedImageHosts.some((allowed) => url.startsWith(allowed));
 
 const filterByList = (repos, repoNames) => {
   if (!repoNames?.length) return [];
@@ -90,15 +83,12 @@ const RepoViewer = ({ username }) => {
   const resolveCover = (repo) => {
     if (repo.readmeCover) {
       const cleaned = repo.readmeCover.replace(/^\.\//, '').trim();
-      if (cleaned.startsWith('http')) {
-        return isAllowedImageUrl(cleaned) ? cleaned : '';
-      }
-      const rawUrl = `https://raw.githubusercontent.com/${repo.full_name}/${repo.default_branch}/${cleaned}`;
-      return isAllowedImageUrl(rawUrl) ? rawUrl : '';
+      if (cleaned.startsWith('http')) return cleaned;
+      return `https://raw.githubusercontent.com/${repo.full_name}/${repo.default_branch}/${cleaned}`;
     }
 
     if (repo.coverUrl) {
-      return isAllowedImageUrl(repo.coverUrl) ? repo.coverUrl : '';
+      return repo.coverUrl;
     }
 
     const normalized = normalizeName(repo.name);
