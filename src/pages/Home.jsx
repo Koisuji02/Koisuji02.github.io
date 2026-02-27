@@ -69,7 +69,7 @@ const Home = () => {
                pause={1400}
              />
           <p className="hero__subtitle">
-            I'm Mattia Domizio, a curious developer who enjoys building and learning new things. You can find here some information about me and some of my projects. Feel free to contact me if you want to collaborate or just say hi!
+            I'm Mattia Domizio, a curious Computer Engineer who enjoys building and learning new things. You can find here some information about me and some of my projects. Feel free to contact me if you want to collaborate or just say hi!
             <span className="hero__ps">
               <br />
               <em>
