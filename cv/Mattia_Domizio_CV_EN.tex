@@ -1,0 +1,224 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+%
+% Mattia Domizio - CV (EN)
+% Layout adapted from Luigi Gonnella's template
+%
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[a4paper,top=1.4cm,bottom=1.4cm,left=1.6cm,right=1.6cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{parskip}
+\usepackage{fontawesome5}
+\usepackage[hidelinks]{hyperref}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+% --- Section formatting ---------------------------------------------------
+\titleformat{\section}
+  {\Large\bfseries\MakeUppercase}
+  {}{0pt}{}[\vspace{-6pt}\hrulefill]
+\titlespacing*{\section}{0pt}{10pt}{6pt}
+
+% --- Helpers --------------------------------------------------------------
+\newcommand{\entry}[4]{%
+  \noindent\begin{tabularx}{\linewidth}{@{}X r@{}}
+    \textbf{#1} & #3 \\
+    \textit{#2} & \\
+  \end{tabularx}\vspace{-4pt}
+  \ifx&#4&\else\par#4\fi
+}
+
+\newcommand{\simpleentry}[3]{%
+  \noindent\begin{tabularx}{\linewidth}{@{}X r@{}}
+    \textbf{#1} & #3 \\
+    \textit{#2} & \\
+  \end{tabularx}\vspace{2pt}
+}
+
+\setlist[itemize]{leftmargin=1.2em,topsep=2pt,itemsep=1pt,parsep=0pt}
+
+% --- Header ---------------------------------------------------------------
+\begin{document}
+
+\begin{center}
+  {\Huge\bfseries Mattia Domizio}\\[2pt]
+  {\itshape Computer Engineer \,$|$\, Software Engineer \,$|$\, Data Engineer}\\[6pt]
+  \small
+  \faEnvelope[regular]\, \href{mailto:mat.dom1609job@gmail.com}{mat.dom1609job@gmail.com}\quad
+  \faPhone\, +39 3899014089\quad
+  \faLink\, \href{https://koisuji02.github.io/}{koisuji02.github.io}\\[2pt]
+  \faLinkedin\, \href{https://linkedin.com/in/mattia-domizio-7a07b628b}{linkedin.com/in/mattia-domizio-7a07b628b}\quad
+  \faGithub\, \href{https://github.com/Koisuji02}{github.com/Koisuji02}
+\end{center}
+
+% --- Summary --------------------------------------------------------------
+\section*{Summary}
+Computer Engineering MSc student at Politecnico di Torino with hands-on experience across
+\textbf{full-stack web development}, \textbf{distributed systems}, \textbf{data engineering}
+and \textbf{low-level system and GPU programming}. Currently working on an \textbf{external thesis at Target Reply}
+on a metadata platform. Looking for full-time role as
+\textbf{Data/Software Engineer} where I can ship reliable systems and keep learning.
+
+% --- Education ------------------------------------------------------------
+\section*{Education}
+
+\entry{MSc in Computer Engineering (LM-32)}{Politecnico di Torino}{2024 -- Present}{%
+\begin{itemize}
+  \item Exam grades:
+    \textbf{Data Science and Database Technology} (30),
+    \textbf{Networks Services and Technologies} (29),
+    \textbf{Computer Architectures} (30),
+    \textbf{Information Systems} (27),
+    \textbf{Web Applications I} (30L),
+    \textbf{Software Engineering} (30),
+    \textbf{Formal Languages and Compilers} (28),
+    \textbf{System and Device Programming} (28),
+    \textbf{Distributed Systems Programming} (29),
+    \textbf{Software Engineering II} (30L),
+    \textbf{Information Systems Security} (27),
+    \textbf{GPU Programming} (29).
+\end{itemize}}
+
+\entry{BSc in Computer Engineering (L-08)}{Politecnico di Torino}{2021 -- 2024}{%
+\textbf{107/110}}
+
+\entry{Scientific High School Diploma}{Liceo Scientifico Cattaneo, Turin}{2021}{%
+\textbf{100/100}}
+
+\simpleentry{Cambridge B2 First Certificate}{English language certification}{2020}
+
+% --- Work Experience ------------------------------------------------------
+\section*{Work Experience}
+
+\entry{Data Engineer Intern -- External Thesis Project}{Target Reply S.r.l.}{02/2026 -- Present}{%
+\begin{itemize}
+  \item Working on the master's thesis project taking part in the development of a metadata governance platform.
+\end{itemize}}
+
+\entry{University Tutor}{Politecnico di Torino}{02/2025 -- 07/2025}{%
+\begin{itemize}
+  \item Supported undergraduate students with lab exercises and code reviews on
+        the OOP course (Java).
+\end{itemize}}
+
+\entry{Weekend Fruit \& Vegetable Clerk}{Gabrielis S.r.l.}{11/2023 -- 02/2024}{}
+
+\entry{Election Poll Worker}{Comune di Torino}{09/2022}{}
+
+\entry{Private Tutor}{Academic support and homework assistance}{2020 -- 2024}{}
+
+\entry{Assistant Coach}{A.S.D. Pozzomaina}{10/2017 -- 06/2019}{}
+
+% --- Skills ---------------------------------------------------------------
+\section*{Skills}
+
+\textbf{Languages}\\
+Python, Rust, C, C++, Java, TypeScript, JavaScript, Bash, Powershell, GDScript, CUDA, SQL, HTML5, CSS3, Assembly Script (ARM, x86-64, RISC-V, 32), Scala, LaTeX
+
+\vspace{4pt}
+\textbf{Frontend \& UI}\\
+React, React Router, Vite, Next.js, Bootstrap, TailwindCSS, Qt
+
+\vspace{4pt}
+\textbf{Backend \& APIs}\\
+Node.js, Express, Flask, Django, OpenAPI / Swagger, REST, JWT, Postman, .NET, Spring, GraphQL, gRPC, HTTP/2, WebSockets, MQTT, Kafka
+
+\vspace{4pt}
+\textbf{Data \& Databases}\\
+PostgreSQL, MySQL, SQLite, MongoDB, Redis, Apache Hadoop, Apache Spark, DataHub,
+Power BI, Pandas, NumPy, Matplotlib, PyTorch, TensorFlow, Databricks, Snowflake, dbt, Elasticsearch, Qlik, MicroStrategy
+
+\vspace{4pt}
+\textbf{Cloud \& DevOps}\\
+Docker, Kubernetes, Git, GitHub, GitLab, GitHub Actions, AWS, Azure, CMake, Helm, NPM, SonarQube
+
+\vspace{4pt}
+\textbf{Game Dev \& Design}\\
+Godot Engine, Figma, GIMP, NVIDIA tooling
+
+\vspace{4pt}
+\textbf{OS \& Tooling}\\
+Linux, Windows, Arch, Nix, WireGuard
+
+% --- Additional -----------------------------------------------------------
+\section*{Additional}
+
+\textbf{Languages}
+\begin{itemize}
+  \item Italian (Native)
+  \item English (\textbf{B2 First Cambridge})
+\end{itemize}
+
+% --- Projects -------------------------------------------------------------
+\section*{Projects}
+
+\entry{Godot Shader Pipeline Warm-Up}{Godot Engine, GDScript, GDShader, Graphics Pipeline, Benchmarking}{2025 -- 2026}{%
+\begin{itemize}
+  \item Designed and implemented a \textbf{deterministic shader pipeline warm-up workflow}
+        in Godot to reduce first-use stutter at runtime.
+  \item Ran benchmarks comparing cold vs.\ warmed-up runs and documented results in a
+        dedicated \textbf{report.pdf}.
+  \item \textbf{GitHub}: \href{https://github.com/Koisuji02/GodotShaderWarmup}{link}
+\end{itemize}}
+
+\entry{Participium -- Civic Reporting Platform}{Full-stack Web (TypeScript, Python, React, JavaScript, HTML, CSS), Software Engineering (Swagger / OpenAPI, Docker, Bash, Redis), Agile (YouTrack)}{2026}{%
+\begin{itemize}
+  \item Civic reporting platform for the city of Turin: citizens submit reports on urban
+        issues and municipal officers triage and manage them.
+  \item Exam project for \textbf{Software Engineering II} at Politecnico di Torino.
+  \item \textbf{GitHub}: \href{https://github.com/Koisuji02/Participium}{link}
+\end{itemize}}
+
+\entry{GeoControl}{REST APIs, TypeScript, React, JavaScript, HTML, CSS, Docker, Swagger / OpenAPI}{2025}{%
+\begin{itemize}
+  \item Monitoring system for heterogeneous sensors (position, temperature, pressure,
+        humidity, gas concentration and other geo-environmental variables).
+  \item Designed the REST API surface and the underlying data model; full documentation
+        shipped under the \texttt{/doc} folder.
+  \item \textbf{GitHub}: \href{https://github.com/Koisuji02/GeoControl}{link}
+\end{itemize}}
+
+\entry{Ruggine -- Rust Chat App}{Rust, Tokio, WebSockets, React, JavaScript, HTML, CSS}{2025}{%
+\begin{itemize}
+  \item Built a \textbf{secure messaging system} in Rust with private and group chats.
+  \item Exam project for \textbf{System and Device Programming} (\textit{Programmazione di Sistema} course) at Politecnico di Torino.
+  \item \textbf{GitHub}: \href{https://github.com/Koisuji02/RuggineChatRust}{link}
+\end{itemize}}
+
+\entry{Stuff Happens}{React, Node.js, Express, SQLite, JWT, JavaScript, HTML, CSS}{2025}{%
+\begin{itemize}
+  \item Web-based card game where players guess the position of a new ``bad luck''
+        card relative to three known cards, scoring on a custom \textit{bad luck index}.
+  \item Features \textbf{user authentication}, game history tracking and a
+        travel-mishap themed deck (``Unlucky Holidays'').
+  \item \textbf{GitHub}: \href{https://github.com/Koisuji02/StuffHappens}{link}
+\end{itemize}}
+
+\entry{Film Manager Service}{REST APIs, Swagger / OpenAPI, JSON Schema, JavaScript, Postman}{2024 -- 2025}{%
+\begin{itemize}
+  \item REST service to manage a film catalogue, with an \textbf{OpenAPI/Swagger}
+        specification, \textbf{JSON Schemas} for payload validation and a Postman
+        collection covering the main flows.
+  \item Exam Call 1 project (\textbf{Distributed Systems}).
+  \item \textbf{GitHub}: \href{https://github.com/Koisuji02/FilmManagerService}{link}
+\end{itemize}}
+
+\entry{PAC-MAN on LPC1768}{ARM Assembly, C, Embedded C}{2023 -- 2024}{%
+\begin{itemize}
+  \item Ported PAC-MAN to the \textbf{LPC1768} board using ARM \textbf{assembly} and C,
+        targeting the on-board peripherals.
+  \item Exam project for \textbf{Computer Architectures} at Politecnico di Torino.
+  \item \textbf{GitHub}: \href{https://github.com/Koisuji02/PAC-MAN}{link}
+\end{itemize}}
+
+\end{document}

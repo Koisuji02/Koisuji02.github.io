@@ -106,7 +106,6 @@ export const skillGroups = [
       { name: 'GitHub Actions', icon: 'simple-icons:githubactions', color: '#2088ff', level: 1, useColor: true },
       { name: 'NPM', icon: 'devicon:npm', level: 2 },
       { name: 'SonarQube', icon: 'simple-icons:sonarqube', color: '#4e9bcd', level: 1, useColor: true },
-      { name: 'WireGuard', icon: 'simple-icons:wireguard', color: '#88171a', level: 2, useColor: true },
       { name: 'Mosquitto', icon: 'simple-icons:eclipsemosquitto', color: '#3c5280', level: 2, useColor: true },
       { name: 'Apache', icon: 'devicon:apache', level: 1 },
       { name: 'CMake', icon: 'devicon:cmake', level: 2 }
@@ -127,7 +126,8 @@ export const skillGroups = [
       { name: 'Nix', icon: 'simple-icons:nixos', color: '#5277c3', level: 1, useColor: true },
       {name: 'Arch Linux', icon: 'simple-icons:archlinux', color: '#1793d1', level: 1, useColor: true },
       { name: 'Linux', icon: 'devicon:linux', level: 3 },
-      { name: 'Windows', icon: 'simple-icons:windows', color: '#0078d4', level: 3, useColor: true }
+      { name: 'Windows', icon: 'simple-icons:windows', color: '#0078d4', level: 3, useColor: true },
+      { name: 'WireGuard', icon: 'simple-icons:wireguard', color: '#88171a', level: 2, useColor: true }
     ]
   }
 ];
