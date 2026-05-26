@@ -1,6 +1,10 @@
 import { Icon } from '@iconify/react';
 
 const renderIcon = (skill) => {
+  if (skill.image) {
+    return <img src={skill.image} alt={skill.name} width={22} height={22} />;
+  }
+
   if (skill.useColor) {
     return <Icon icon={skill.icon} color={skill.color} width={22} height={22} />;
   }
@@ -57,6 +61,7 @@ export const skillGroups = [
       { name: 'JWT', icon: 'simple-icons:jsonwebtokens', color: '#ffffff', level: 2, useColor: true },
       { name: 'OpenAPI', icon: 'simple-icons:openapiinitiative', color: '#6ba539', level: 3, useColor: true },
       { name: 'Swagger', icon: 'devicon:swagger', level: 3 },
+      { name: 'GraphQL', icon: 'simple-icons:graphql', color: '#e10098', level: 1, useColor: true },
       { name: 'Postman', icon: 'devicon:postman', level: 2 }
     ]
   },
@@ -71,6 +76,15 @@ export const skillGroups = [
       { name: 'Apache Cassandra', icon: 'devicon:cassandra', level: 1 },
       { name: 'Apache Hadoop', icon: 'devicon:hadoop', level: 2 },
       { name: 'Apache Spark', icon: 'simple-icons:apachespark', color: '#e25a1c', level: 2, useColor: true },
+      { name: 'Databricks', icon: 'simple-icons:databricks', color: '#ff3621', level: 1, useColor: true },
+      { name: 'Power BI', icon: 'simple-icons:powerbi', color: '#f2c811', level: 1, useColor: true },
+      { name: 'Snowflake', icon: 'simple-icons:snowflake', color: '#29b5e8', level: 1, useColor: true },
+      { name: 'dbt', icon: 'simple-icons:dbt', color: '#ff694b', level: 1, useColor: true },
+      { name: 'DataHub', image: '/datahub.png', level: 2 },
+      { name: 'Kafka', icon: 'simple-icons:apachekafka', color: '#ffffff', level: 1, useColor: true },
+      { name: 'ElasticSearch', icon: 'simple-icons:elasticsearch', color: '#005571', level: 1, useColor: true },
+      { name: 'Qlik', icon: 'simple-icons:qlik', color: '#009845', level: 1, useColor: true },
+      { name: 'MicroStrategy', icon: 'simple-icons:microstrategy', color: '#d12228', level: 1, useColor: true },
       { name: 'Matplotlib', icon: 'devicon:matplotlib', level: 1 },
       { name: 'NumPy', icon: 'devicon:numpy', level: 1 },
       { name: 'Pandas', icon: 'devicon:pandas', level: 1 },
@@ -82,11 +96,14 @@ export const skillGroups = [
     title: 'Cloud and DevOps',
     items: [
       { name: 'AWS', icon: 'devicon:amazonwebservices', level: 1 },
+      { name: 'Azure', icon: 'simple-icons:microsoftazure', color: '#0078d4', level: 2, useColor: true },
       { name: 'Docker', icon: 'devicon:docker', level: 2 },
       { name: 'Kubernetes', icon: 'devicon:kubernetes', level: 2 },
+      { name: 'Helm', icon: 'simple-icons:helm', color: '#0f1689', level: 1, useColor: true },
       { name: 'GitLab', icon: 'devicon:gitlab', level: 2 },
       { name: 'Git', icon: 'devicon:git', level: 3 },
       { name: 'GitHub', icon: 'devicon:github', level: 2 },
+      { name: 'GitHub Actions', icon: 'simple-icons:githubactions', color: '#2088ff', level: 1, useColor: true },
       { name: 'NPM', icon: 'devicon:npm', level: 2 },
       { name: 'SonarQube', icon: 'simple-icons:sonarqube', color: '#4e9bcd', level: 1, useColor: true },
       { name: 'WireGuard', icon: 'simple-icons:wireguard', color: '#88171a', level: 2, useColor: true },
