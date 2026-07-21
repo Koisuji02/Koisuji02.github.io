@@ -6,6 +6,8 @@ import RepoViewer from '../components/RepoViewer';
 import { about, terminalContacts } from '../data/siteData';
 import TypewriterTitle from '../components/TypewriterTitle';
 import cvPdf from '../assets/pdf/cv.pdf';
+import thesisIt from '../assets/pdf/thesis_it.pdf';
+import thesisEn from '../assets/pdf/thesis_en.pdf';
 
 const noteFiles = import.meta.glob('../assets/pdf/notes/*.pdf', {
   eager: true,
@@ -34,6 +36,11 @@ const notes = Object.entries(noteFiles)
     };
   })
   .sort((a, b) => a.title.localeCompare(b.title));
+
+const thesisFiles = [
+  { title: 'Master Thesis', subtitle: 'Italian version', lang: 'IT', url: thesisIt },
+  { title: 'Master Thesis', subtitle: 'English version', lang: 'EN', url: thesisEn }
+];
 
 const Home = () => {
   return (
@@ -140,6 +147,33 @@ const Home = () => {
           <h2>Notes</h2>
           <p>Click a note to open it!</p>
         </div>
+
+        <div className="notes__group">
+          <h3 className="notes__group-title">Master Thesis</h3>
+          <p className="notes__group-hint">
+            MSc in Computer Engineering - BI-as-code tooling on top of a metadata governance
+            platform, developed at Target Reply.
+          </p>
+          <div className="thesis__wrap">
+            {thesisFiles.map((thesis) => (
+              <a
+                className="thesis-card"
+                key={thesis.lang}
+                href={thesis.url}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span className="thesis-card__lang">{thesis.lang}</span>
+                <span className="thesis-card__body">
+                  <span className="thesis-card__title">{thesis.title}</span>
+                  <span className="thesis-card__subtitle">{thesis.subtitle}</span>
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <h3 className="notes__group-title">Course Notes</h3>
         <div className="notes__bubble-wrap">
           {notes.map((note) => (
             <a

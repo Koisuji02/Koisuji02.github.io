@@ -1,5 +1,413 @@
 {
-  "generatedAt": "",
-  "didactic": [],
-  "personal": []
+  "generatedAt": "2026-07-21T13:44:26.282Z",
+  "didactic": [
+    {
+      "full_name": "Koisuji02/JavaProgrammazioneOggetti",
+      "name": "JavaProgrammazioneOggetti",
+      "html_url": "https://github.com/Koisuji02/JavaProgrammazioneOggetti",
+      "default_branch": "main",
+      "languages": [
+        "Java",
+        "HTML",
+        "CSS"
+      ],
+      "readmeTitle": "Object Oriented Programming",
+      "readmeDescription": "Laboratories' exercises and Exam Simulations for the course of \"Programmazione A Oggetti\" (italian version of the course \"Object Oriented Programming\") at Politecnico di Torino, Italy",
+      "readmeCover": "cover.jpeg",
+      "coverUrl": "https://raw.githubusercontent.com/Koisuji02/JavaProgrammazioneOggetti/main/cover.jpeg"
+    },
+    {
+      "full_name": "Koisuji02/ARM_LPC1768",
+      "name": "ARM_LPC1768",
+      "html_url": "https://github.com/Koisuji02/ARM_LPC1768",
+      "default_branch": "main",
+      "languages": [
+        "C",
+        "Assembly"
+      ],
+      "readmeTitle": "Computer Architectures",
+      "readmeDescription": "Laboratories' exercises for the course of \"Architetture dei Sistemi di Elaborazione\" (italian version of the course of \"Computer Architectures\") at Politecnico di Torino, Italy. The exercises are implemented on the ARM LPC1768 microcontroller using Keil uVision IDE.",
+      "readmeCover": "cover.png",
+      "coverUrl": "https://raw.githubusercontent.com/Koisuji02/ARM_LPC1768/main/cover.png"
+    },
+    {
+      "full_name": "Koisuji02/MIPS64",
+      "name": "MIPS64",
+      "html_url": "https://github.com/Koisuji02/MIPS64",
+      "default_branch": "main",
+      "languages": [
+        "Python",
+        "Assembly",
+        "Lasso"
+      ],
+      "readmeTitle": "MIPS64",
+      "readmeDescription": "Laboratories' exercises for the MIPS64 part of the course of \"Architetture dei Sistemi di Elaborazione\" (italian version of the course of \"Computer Architectures\") at Politecnico di Torino, Italy. The exercises are based on the MARS MIPS simulator, and they cover various aspects of MIPS64 assembly programming, including basic instructions, control flow, and system calls.",
+      "readmeCover": "cover.png",
+      "coverUrl": "https://raw.githubusercontent.com/Koisuji02/MIPS64/main/cover.png"
+    },
+    {
+      "full_name": "Koisuji02/MATLAB_Projects",
+      "name": "MATLAB_Projects",
+      "html_url": "https://github.com/Koisuji02/MATLAB_Projects",
+      "default_branch": "main",
+      "languages": [
+        "MATLAB"
+      ],
+      "readmeTitle": "Matlab Exercises",
+      "readmeDescription": "This repository contains the exercises of the laboratories and exams of the courses \"Controlli Automatici\" (italian version of the course \"Automatic Control\") and \"Teoria ed Elaborazione dei Segnali\" (italian version of the course \"Signal Analysis and Processing\") at Politecnico di Torino, Italy",
+      "readmeCover": "cover.jpg",
+      "coverUrl": "https://raw.githubusercontent.com/Koisuji02/MATLAB_Projects/main/cover.jpg"
+    },
+    {
+      "full_name": "Koisuji02/DataBase_Projects",
+      "name": "DataBase_Projects",
+      "html_url": "https://github.com/Koisuji02/DataBase_Projects",
+      "default_branch": "main",
+      "languages": [
+        "Jupyter Notebook",
+        "Python"
+      ],
+      "readmeTitle": "Database and Data Warehouse",
+      "readmeDescription": "Laboratories' exercises and Exam Simulations for the course of \"Data Science e Tecnologie per le Basi di Dati\" (italian version of the course \"Data Science and Database Technology\") at Politecnico di Torino, Italy",
+      "readmeCover": "cover.png",
+      "coverUrl": "https://raw.githubusercontent.com/Koisuji02/DataBase_Projects/main/cover.png"
+    },
+    {
+      "full_name": "Koisuji02/AlgoritmiStruttureDati",
+      "name": "AlgoritmiStruttureDati",
+      "html_url": "https://github.com/Koisuji02/AlgoritmiStruttureDati",
+      "default_branch": "main",
+      "languages": [
+        "C"
+      ],
+      "readmeTitle": "Algorithms and Data Structures",
+      "readmeDescription": "Laboratories' exercises for the course of \"Algoritmi e Strutture Dati\" (italian version of the course \"Algorithms and Data Structures\") at Politecnico di Torino, Italy",
+      "readmeCover": "cover.png",
+      "coverUrl": "https://raw.githubusercontent.com/Koisuji02/AlgoritmiStruttureDati/main/cover.png"
+    },
+    {
+      "full_name": "Koisuji02/IntroduzioneWebAppFlask",
+      "name": "IntroduzioneWebAppFlask",
+      "html_url": "https://github.com/Koisuji02/IntroduzioneWebAppFlask",
+      "default_branch": "main",
+      "languages": [
+        "Python",
+        "HTML",
+        "PowerShell",
+        "C",
+        "CSS",
+        "Batchfile",
+        "JavaScript",
+        "Go Template"
+      ],
+      "readmeTitle": "Introduction to Web Applications",
+      "readmeDescription": "Laboratories' exercises for the course of \"Introduzione alle Applicazioni Web\" (italian version of the course \"Introduction to Web Applications\") at Politecnico di Torino, Italy",
+      "readmeCover": "cover.jpg",
+      "coverUrl": "https://raw.githubusercontent.com/Koisuji02/IntroduzioneWebAppFlask/main/cover.jpg"
+    },
+    {
+      "full_name": "Koisuji02/OperativeSystems",
+      "name": "OperativeSystems",
+      "html_url": "https://github.com/Koisuji02/OperativeSystems",
+      "default_branch": "main",
+      "languages": [
+        "C",
+        "Shell"
+      ],
+      "readmeTitle": "Operating Systems",
+      "readmeDescription": "Laboratories' exercises for the course of \"Sistemi Operativi\" (italian version of the course \"Operating Systems\") at Politecnico di Torino, Italy",
+      "readmeCover": "cover.jpg",
+      "coverUrl": "https://raw.githubusercontent.com/Koisuji02/OperativeSystems/main/cover.jpg"
+    },
+    {
+      "full_name": "Koisuji02/ProgrammazioneDiSistema",
+      "name": "ProgrammazioneDiSistema",
+      "html_url": "https://github.com/Koisuji02/ProgrammazioneDiSistema",
+      "default_branch": "main",
+      "languages": [
+        "C",
+        "Rust"
+      ],
+      "readmeTitle": "System and Device Programming",
+      "readmeDescription": "Laboratories' exercises (OS161) and Exam Simulations (Rust) for the course of \"Programmazione di Sistema\" (italian version of the course \"System and Device Programming\") at Politecnico di Torino, Italy",
+      "readmeCover": "cover.jpeg",
+      "coverUrl": "https://raw.githubusercontent.com/Koisuji02/ProgrammazioneDiSistema/main/cover.jpeg"
+    },
+    {
+      "full_name": "Koisuji02/Compilers",
+      "name": "Compilers",
+      "html_url": "https://github.com/Koisuji02/Compilers",
+      "default_branch": "main",
+      "languages": [
+        "Java",
+        "Lex",
+        "HTML",
+        "Starlark",
+        "Makefile",
+        "Vim Script",
+        "C",
+        "Yacc",
+        "Emacs Lisp",
+        "Shell",
+        "Assembly",
+        "CSS",
+        "AngelScript",
+        "Batchfile"
+      ],
+      "readmeTitle": "Formal Languages and Compilers",
+      "readmeDescription": "Laboratories' exercises and Exam Simulations for the \"Compilers\" part of the course \"Formal Languages and Compilers\" at Politecnico di Torino, Italy",
+      "readmeCover": "cover.png",
+      "coverUrl": "https://raw.githubusercontent.com/Koisuji02/Compilers/main/cover.png"
+    },
+    {
+      "full_name": "Koisuji02/SoftwareEngineering",
+      "name": "SoftwareEngineering",
+      "html_url": "https://github.com/Koisuji02/SoftwareEngineering",
+      "default_branch": "main",
+      "languages": [
+        "TypeScript",
+        "JavaScript",
+        "Dockerfile"
+      ],
+      "readmeTitle": "Software Engineering I",
+      "readmeDescription": "Laboratories' exercises and Exam Project for the course of \"Software Engineering I\" at Politecnico di Torino, Italy",
+      "readmeCover": "cover.png",
+      "coverUrl": "https://raw.githubusercontent.com/Koisuji02/SoftwareEngineering/main/cover.png"
+    },
+    {
+      "full_name": "Koisuji02/Web1",
+      "name": "Web1",
+      "html_url": "https://github.com/Koisuji02/Web1",
+      "default_branch": "main",
+      "languages": [
+        "JavaScript",
+        "HTML",
+        "CSS"
+      ],
+      "readmeTitle": "Web Applications I",
+      "readmeDescription": "Exercises, Laboratories' exercises and Exam Simulation for the course of \"Applicazioni Web I\" (italian version of the course \"Web Applications I\") at Politecnico di Torino, Italy",
+      "readmeCover": "cover.png",
+      "coverUrl": "https://raw.githubusercontent.com/Koisuji02/Web1/main/cover.png"
+    },
+    {
+      "full_name": "Koisuji02/IS-Exams",
+      "name": "IS-Exams",
+      "html_url": "https://github.com/Koisuji02/IS-Exams",
+      "default_branch": "main",
+      "languages": [],
+      "readmeTitle": "Information Systems",
+      "readmeDescription": "Exam Simulations for the course of \"Information Systems\" at Politecnico di Torino, Italy",
+      "readmeCover": "cover.png",
+      "coverUrl": "https://raw.githubusercontent.com/Koisuji02/IS-Exams/main/cover.png"
+    },
+    {
+      "full_name": "Koisuji02/DistributedSystems",
+      "name": "DistributedSystems",
+      "html_url": "https://github.com/Koisuji02/DistributedSystems",
+      "default_branch": "main",
+      "languages": [
+        "JavaScript",
+        "Java",
+        "CSS",
+        "HTML"
+      ],
+      "readmeTitle": "Distributed Systems",
+      "readmeDescription": "Laboratories' exercises, Exercises and Exam for the course of \"Distributed Systems\" at Politecnico di Torino, Italy",
+      "readmeCover": "cover.jpg",
+      "coverUrl": "https://raw.githubusercontent.com/Koisuji02/DistributedSystems/main/cover.jpg"
+    },
+    {
+      "full_name": "Koisuji02/GPUProgramming",
+      "name": "GPUProgramming",
+      "html_url": "https://github.com/Koisuji02/GPUProgramming",
+      "default_branch": "main",
+      "languages": [
+        "Cuda",
+        "C++",
+        "C",
+        "Shell",
+        "Makefile",
+        "CMake",
+        "Python"
+      ],
+      "readmeTitle": "GPU Programming",
+      "readmeDescription": "Laboratories' exercises for the course of \"GPU Programming\" at Politecnico di Torino, Italy",
+      "readmeCover": "cover.jpg",
+      "coverUrl": "https://raw.githubusercontent.com/Koisuji02/GPUProgramming/main/cover.jpg"
+    },
+    {
+      "full_name": "Koisuji02/SSI",
+      "name": "SSI",
+      "html_url": "https://github.com/Koisuji02/SSI",
+      "default_branch": "main",
+      "languages": [
+        "Python",
+        "Shell",
+        "Roff"
+      ],
+      "readmeTitle": "Information System Security",
+      "readmeDescription": "Laboratories' exercises for the course of \"Sicurezza dei Sistemi Informativi\" (italian version of the course \"Information System Security\") at Politecnico di Torino, Italy",
+      "readmeCover": "cover.png",
+      "coverUrl": "https://raw.githubusercontent.com/Koisuji02/SSI/main/cover.png"
+    },
+    {
+      "full_name": "Koisuji02/SoftwareEngineeringII",
+      "name": "SoftwareEngineeringII",
+      "html_url": "https://github.com/Koisuji02/SoftwareEngineeringII",
+      "default_branch": "main",
+      "languages": [
+        "TypeScript",
+        "CSS",
+        "JavaScript",
+        "HTML"
+      ],
+      "readmeTitle": "Software Engineering II",
+      "readmeDescription": "Workshop exercises for the course of \"Software Engineering II\" at Politecnico di Torino, Italy",
+      "readmeCover": "cover.png",
+      "coverUrl": "https://raw.githubusercontent.com/Koisuji02/SoftwareEngineeringII/main/cover.png"
+    }
+  ],
+  "personal": [
+    {
+      "full_name": "Koisuji02/GodotShaderWarmup",
+      "name": "GodotShaderWarmup",
+      "html_url": "https://github.com/Koisuji02/GodotShaderWarmup",
+      "default_branch": "main",
+      "languages": [
+        "GDShader",
+        "GDScript",
+        "C++",
+        "Python"
+      ],
+      "readmeTitle": "Godot Shader Pipeline Warm-Up",
+      "readmeDescription": "This folder contains the Godot project and all the code/assets used to implement and benchmark a deterministic warm-up workflow to reduce first-use shader/pipeline stutter. Also a report.pdf is available to check the results of my implementation and experiments",
+      "readmeCover": "cover.png",
+      "coverUrl": "https://raw.githubusercontent.com/Koisuji02/GodotShaderWarmup/main/cover.png"
+    },
+    {
+      "full_name": "Koisuji02/Participium",
+      "name": "Participium",
+      "html_url": "https://github.com/Koisuji02/Participium",
+      "default_branch": "main",
+      "languages": [
+        "Python",
+        "TypeScript",
+        "Shell",
+        "CSS",
+        "JavaScript",
+        "PowerShell",
+        "HTML",
+        "Dockerfile"
+      ],
+      "readmeTitle": "Participium",
+      "readmeDescription": "Civic reporting platform for the city of Turin, enabling citizens to report urban issues and allowing municipal officers to review and manage them. Exam Project for the course \"Software Engineering II\" at Politecnico di Torino, Italy",
+      "readmeCover": "cover.jpg",
+      "coverUrl": "https://raw.githubusercontent.com/Koisuji02/Participium/main/cover.jpg"
+    },
+    {
+      "full_name": "Koisuji02/GeoControl",
+      "name": "GeoControl",
+      "html_url": "https://github.com/Koisuji02/GeoControl",
+      "default_branch": "main",
+      "languages": [
+        "TypeScript",
+        "HTML",
+        "JavaScript",
+        "CSS",
+        "Dockerfile"
+      ],
+      "readmeTitle": "GeoControl API",
+      "readmeDescription": "GeoControl is a monitoring system designed to manage diƯerent kinds of sensors able to measure geological, meteorological, environmental, and other physical variables such as position, temperature, pressure, humidity, gas concentration. See the complete documentation under /doc folder",
+      "readmeCover": "cover.webp",
+      "coverUrl": "https://raw.githubusercontent.com/Koisuji02/GeoControl/main/cover.webp"
+    },
+    {
+      "full_name": "Koisuji02/RuggineChatRust",
+      "name": "RuggineChatRust",
+      "html_url": "https://github.com/Koisuji02/RuggineChatRust",
+      "default_branch": "main",
+      "languages": [],
+      "readmeTitle": "",
+      "readmeDescription": "",
+      "readmeCover": "",
+      "coverUrl": ""
+    },
+    {
+      "full_name": "Koisuji02/StuffHappens",
+      "name": "StuffHappens",
+      "html_url": "https://github.com/Koisuji02/StuffHappens",
+      "default_branch": "main",
+      "languages": [],
+      "readmeTitle": "",
+      "readmeDescription": "",
+      "readmeCover": "",
+      "coverUrl": ""
+    },
+    {
+      "full_name": "Koisuji02/FilmManagerService",
+      "name": "FilmManagerService",
+      "html_url": "https://github.com/Koisuji02/FilmManagerService",
+      "default_branch": "main",
+      "languages": [],
+      "readmeTitle": "",
+      "readmeDescription": "",
+      "readmeCover": "",
+      "coverUrl": ""
+    },
+    {
+      "full_name": "Koisuji02/PAC-MAN",
+      "name": "PAC-MAN",
+      "html_url": "https://github.com/Koisuji02/PAC-MAN",
+      "default_branch": "main",
+      "languages": [],
+      "readmeTitle": "",
+      "readmeDescription": "",
+      "readmeCover": "",
+      "coverUrl": ""
+    },
+    {
+      "full_name": "Koisuji02/PersonalWebsite_Blog",
+      "name": "PersonalWebsite_Blog",
+      "html_url": "https://github.com/Koisuji02/PersonalWebsite_Blog",
+      "default_branch": "main",
+      "languages": [],
+      "readmeTitle": "",
+      "readmeDescription": "",
+      "readmeCover": "",
+      "coverUrl": ""
+    },
+    {
+      "full_name": "Koisuji02/CalcoloCodiceFiscale",
+      "name": "CalcoloCodiceFiscale",
+      "html_url": "https://github.com/Koisuji02/CalcoloCodiceFiscale",
+      "default_branch": "main",
+      "languages": [],
+      "readmeTitle": "",
+      "readmeDescription": "",
+      "readmeCover": "",
+      "coverUrl": ""
+    },
+    {
+      "full_name": "Koisuji02/TransposedMatrix",
+      "name": "TransposedMatrix",
+      "html_url": "https://github.com/Koisuji02/TransposedMatrix",
+      "default_branch": "main",
+      "languages": [],
+      "readmeTitle": "",
+      "readmeDescription": "",
+      "readmeCover": "",
+      "coverUrl": ""
+    },
+    {
+      "full_name": "Koisuji02/PowerBI-Project",
+      "name": "PowerBI-Project",
+      "html_url": "https://github.com/Koisuji02/PowerBI-Project",
+      "default_branch": "main",
+      "languages": [],
+      "readmeTitle": "",
+      "readmeDescription": "",
+      "readmeCover": "",
+      "coverUrl": ""
+    }
+  ]
 }
