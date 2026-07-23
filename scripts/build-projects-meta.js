@@ -91,10 +91,55 @@ const resolveCover = (fullName, branch, readmeCover) => {
   return `https://raw.githubusercontent.com/${fullName}/${branch}/${cleaned}`;
 };
 
+// An umbrella repo (only git submodules + docs) reports no languages of its own.
+// Parse its `.gitmodules` and return the GitHub `owner/repo` of each submodule so we
+// can aggregate their languages onto the umbrella card.
+const parseSubmoduleRepos = (gitmodules) => {
+  const repos = [];
+  const urlRegex = /url\s*=\s*(\S+)/g;
+  let match;
+  while ((match = urlRegex.exec(gitmodules)) !== null) {
+    const cleaned = match[1].trim().replace(/\.git$/, '');
+    const ownerRepo = cleaned.match(/github\.com[/:]([^/\s]+\/[^/\s]+)/i);
+    if (ownerRepo) repos.push(ownerRepo[1]);
+  }
+  return repos;
+};
+
+const fetchLanguageBytes = async (fullName) =>
+  fetchJson(`https://api.github.com/repos/${fullName}/languages`).catch(() => ({}));
+
+// Merge language byte-counts from the repo itself plus any submodules, then order by
+// total bytes descending (matching how GitHub ranks languages).
+const collectLanguages = async (fullName, branch, ownLanguages) => {
+  const totals = { ...ownLanguages };
+  let gitmodules = '';
+  try {
+    gitmodules = await fetchText(
+      `https://raw.githubusercontent.com/${fullName}/${branch}/.gitmodules`,
+      { Accept: '*/*' }
+    );
+  } catch {
+    // no submodules — fall back to the repo's own languages
+  }
+  if (gitmodules) {
+    for (const subRepo of parseSubmoduleRepos(gitmodules)) {
+      const subLanguages = await fetchLanguageBytes(subRepo);
+      for (const [language, bytes] of Object.entries(subLanguages)) {
+        totals[language] = (totals[language] || 0) + bytes;
+      }
+    }
+  }
+  return Object.entries(totals)
+    .sort((a, b) => b[1] - a[1])
+    .map(([language]) => language);
+};
+
 const fetchRepoMeta = async (fullName) => {
   try {
     const repo = await fetchJson(`https://api.github.com/repos/${fullName}`);
-    const languages = await fetchJson(`https://api.github.com/repos/${fullName}/languages`).catch(() => ({}));
+    const ownLanguages = await fetchLanguageBytes(fullName);
+    const languages = await collectLanguages(repo.full_name, repo.default_branch || 'main', ownLanguages);
 
     let readme = '';
     try {
@@ -126,7 +171,7 @@ const fetchRepoMeta = async (fullName) => {
       name: repo.name,
       html_url: repo.html_url,
       default_branch: repo.default_branch,
-      languages: Object.keys(languages),
+      languages,
       readmeTitle: parsed.title,
       readmeDescription: parsed.description,
       readmeCover: parsed.coverPath,

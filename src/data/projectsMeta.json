@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-21T13:44:26.282Z",
+  "generatedAt": "2026-07-23T23:08:17.235Z",
   "didactic": [
     {
       "full_name": "Koisuji02/JavaProgrammazioneOggetti",
@@ -269,6 +269,27 @@
   ],
   "personal": [
     {
+      "full_name": "Koisuji02/EuroTransit",
+      "name": "EuroTransit",
+      "html_url": "https://github.com/Koisuji02/EuroTransit",
+      "default_branch": "main",
+      "languages": [
+        "Kotlin",
+        "TypeScript",
+        "Just",
+        "Go Template",
+        "JavaScript",
+        "CSS",
+        "Dockerfile",
+        "Shell",
+        "HTML"
+      ],
+      "readmeTitle": "EuroTransit",
+      "readmeDescription": "EuroTransit is a Kubernetes-native train-ticket marketplace (browsing, booking, seat reservation and PayPal payments) built to prove operational behaviour under partial failure rather than feature richness. Six Kotlin/Spring Boot microservices behind a single Traefik ingress implement the pay-confirm-capture money path as a fully asynchronous, orchestrated Kafka saga, with a transactional outbox drained by Debezium CDC, a never-oversell seat-reservation invariant and idempotent exactly-once payments. The system ships via a two-repository GitOps model continuously reconciled by Argo CD on CloudNativePG-backed, Helm-templated services, with progressive delivery (canary and blue/green), SLOs with burn-rate alerts and a suite of chaos experiments. A React/Vite/TypeScript storefront provides Keycloak OAuth2 (PKCE) login and live saga tracking over SSE.",
+      "readmeCover": "",
+      "coverUrl": ""
+    },
+    {
       "full_name": "Koisuji02/GodotShaderWarmup",
       "name": "GodotShaderWarmup",
       "html_url": "https://github.com/Koisuji02/GodotShaderWarmup",
@@ -326,77 +347,101 @@
       "name": "RuggineChatRust",
       "html_url": "https://github.com/Koisuji02/RuggineChatRust",
       "default_branch": "main",
-      "languages": [],
-      "readmeTitle": "",
-      "readmeDescription": "",
-      "readmeCover": "",
-      "coverUrl": ""
+      "languages": [
+        "Rust",
+        "JavaScript",
+        "CSS",
+        "HTML"
+      ],
+      "readmeTitle": "Rust Chat App - \"Ruggine\"",
+      "readmeDescription": "Exam Project of the course \"System and Device Programming\" (Rust) (the italian version of the course, \"Programmazione di Sistema\") at Politecnico di Torino, Italy.",
+      "readmeCover": "cover.png",
+      "coverUrl": "https://raw.githubusercontent.com/Koisuji02/RuggineChatRust/main/cover.png"
     },
     {
       "full_name": "Koisuji02/StuffHappens",
       "name": "StuffHappens",
       "html_url": "https://github.com/Koisuji02/StuffHappens",
       "default_branch": "main",
-      "languages": [],
-      "readmeTitle": "",
-      "readmeDescription": "",
-      "readmeCover": "",
-      "coverUrl": ""
+      "languages": [
+        "JavaScript",
+        "CSS",
+        "HTML"
+      ],
+      "readmeTitle": "Stuff Happens",
+      "readmeDescription": "\"Stuff Happens\" is a web-based card game where players test their luck by guessing the position of a new card in relation to three initial cards. Each card represents a bad luck event with a specific \"bad luck index\". The goal is to collect as many bad luck points as possible without losing all your points. The game features user authentication, allowing players to track their game history and results. This version of the game focus on \"Unlucky Holidays\" theme, with cards representing common travel mishaps.",
+      "readmeCover": "cover.png",
+      "coverUrl": "https://raw.githubusercontent.com/Koisuji02/StuffHappens/main/cover.png"
     },
     {
       "full_name": "Koisuji02/FilmManagerService",
       "name": "FilmManagerService",
       "html_url": "https://github.com/Koisuji02/FilmManagerService",
       "default_branch": "main",
-      "languages": [],
-      "readmeTitle": "",
-      "readmeDescription": "",
-      "readmeCover": "",
-      "coverUrl": ""
+      "languages": [
+        "JavaScript"
+      ],
+      "readmeTitle": "Film Manager Service",
+      "readmeDescription": "Exam Call 1's project - Film Manager Service (Swagger + REST APIs + JSON Schemas + Postman Collection)",
+      "readmeCover": "cover.png",
+      "coverUrl": "https://raw.githubusercontent.com/Koisuji02/FilmManagerService/main/cover.png"
     },
     {
       "full_name": "Koisuji02/PAC-MAN",
       "name": "PAC-MAN",
       "html_url": "https://github.com/Koisuji02/PAC-MAN",
       "default_branch": "main",
-      "languages": [],
-      "readmeTitle": "",
-      "readmeDescription": "",
-      "readmeCover": "",
-      "coverUrl": ""
+      "languages": [
+        "C",
+        "Assembly"
+      ],
+      "readmeTitle": "PAC-MAN",
+      "readmeDescription": "PAC-MAN game ported in assembly and C on LPC1768. Exam Project for the course \"Architetture dei Sistemi di Elaborazione\" (italian version of the course \"Computer Architectures\") at Politecnico di Torino, Italy",
+      "readmeCover": "cover.jpg",
+      "coverUrl": "https://raw.githubusercontent.com/Koisuji02/PAC-MAN/main/cover.jpg"
     },
     {
       "full_name": "Koisuji02/PersonalWebsite_Blog",
       "name": "PersonalWebsite_Blog",
       "html_url": "https://github.com/Koisuji02/PersonalWebsite_Blog",
       "default_branch": "main",
-      "languages": [],
-      "readmeTitle": "",
-      "readmeDescription": "",
-      "readmeCover": "",
-      "coverUrl": ""
+      "languages": [
+        "HTML",
+        "Python",
+        "CSS"
+      ],
+      "readmeTitle": "Blog Template",
+      "readmeDescription": "Just a simple blog template built in Flask",
+      "readmeCover": "cover.png",
+      "coverUrl": "https://raw.githubusercontent.com/Koisuji02/PersonalWebsite_Blog/main/cover.png"
     },
     {
       "full_name": "Koisuji02/CalcoloCodiceFiscale",
       "name": "CalcoloCodiceFiscale",
       "html_url": "https://github.com/Koisuji02/CalcoloCodiceFiscale",
       "default_branch": "main",
-      "languages": [],
-      "readmeTitle": "",
-      "readmeDescription": "",
-      "readmeCover": "",
-      "coverUrl": ""
+      "languages": [
+        "Python"
+      ],
+      "readmeTitle": "Italian Fiscal Code Calculator",
+      "readmeDescription": "A simple Python script to calculate the Italian Fiscal Code (Codice Fiscale) based on personal information such as name, surname, date of birth and place of birth.",
+      "readmeCover": "cover.jpg",
+      "coverUrl": "https://raw.githubusercontent.com/Koisuji02/CalcoloCodiceFiscale/main/cover.jpg"
     },
     {
       "full_name": "Koisuji02/TransposedMatrix",
       "name": "TransposedMatrix",
       "html_url": "https://github.com/Koisuji02/TransposedMatrix",
       "default_branch": "main",
-      "languages": [],
-      "readmeTitle": "",
-      "readmeDescription": "",
-      "readmeCover": "",
-      "coverUrl": ""
+      "languages": [
+        "Assembly",
+        "C",
+        "Python"
+      ],
+      "readmeTitle": "Matrix Transpose Calculator",
+      "readmeDescription": "This project is a simple matrix transpose calculator built using Python, C and AssemblyMIPS. It allows users to input a matrix and then calculates and displays the transposed version of that matrix.",
+      "readmeCover": "cover.png",
+      "coverUrl": "https://raw.githubusercontent.com/Koisuji02/TransposedMatrix/main/cover.png"
     },
     {
       "full_name": "Koisuji02/PowerBI-Project",
@@ -404,10 +449,10 @@
       "html_url": "https://github.com/Koisuji02/PowerBI-Project",
       "default_branch": "main",
       "languages": [],
-      "readmeTitle": "",
-      "readmeDescription": "",
-      "readmeCover": "",
-      "coverUrl": ""
+      "readmeTitle": "Power BI Project Data Survey",
+      "readmeDescription": "Power BI Report visualization of the data science project survey results found on Youtube.",
+      "readmeCover": "cover.png",
+      "coverUrl": "https://raw.githubusercontent.com/Koisuji02/PowerBI-Project/main/cover.png"
     }
   ]
 }
