@@ -26,3 +26,6 @@ dist-ssr
 
 # Cover letters
 cv/coverLetters
+# artefatti di compilazione LaTeX
+*.fdb_latexmk
+*.fls
